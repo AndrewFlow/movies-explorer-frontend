@@ -1,0 +1,33 @@
+.login {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #FFF;
+    padding: 70px 0;
+}
+.login__body {
+    max-width: 396px;
+    width: 100%;
+}
+
+.login__links {
+    display: flex;
+    justify-content: center;
+}
+.login__inner {
+    margin: 179px 0px 0px 0px;
+}
+
+
+@media screen and (max-width: 767px) {
+    .login {
+        padding: 70px 30px;
+    }
+    .login__inner {
+        margin: 267px 0px 0px 0px;
+    }
+    
+
+}
