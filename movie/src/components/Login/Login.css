@@ -7,6 +7,7 @@
     background-color: #FFF;
     padding: 70px 0;
 }
+
 .login__body {
     max-width: 396px;
     width: 100%;
@@ -16,8 +17,18 @@
     display: flex;
     justify-content: center;
 }
+
 .login__inner {
     margin: 179px 0px 0px 0px;
+}
+
+.login__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 40px 0px;
+    padding: 0;
 }
 
 
@@ -25,9 +36,16 @@
     .login {
         padding: 70px 30px;
     }
+
     .login__inner {
-        margin: 267px 0px 0px 0px;
+        margin-top: 267px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    
+    .login__title {
+        text-align: center;
+    }
+
 
 }

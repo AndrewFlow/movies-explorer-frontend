@@ -4,7 +4,7 @@ import "./NotFound.css"
 
 function NotFound() {
     return (
-        <>
+        <main>
             <section className="notfound">
                 <div className="notfound__container">
                     <h1 className="notfound__title">
@@ -14,7 +14,7 @@ function NotFound() {
                 </div>
                 <Link className="notfound__link" to="/">Назад</Link>
             </section>
-        </>
+        </main>
     )
 }
 

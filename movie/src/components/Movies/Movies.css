@@ -17,10 +17,6 @@
 .forms__input::placeholder {
     color: #A0A0A0;
 }
-.forms__input:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
-}
 
 .forms__button {
     position: absolute;

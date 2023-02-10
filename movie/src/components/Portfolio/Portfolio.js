@@ -7,26 +7,26 @@ function Portfolio() {
     return (
         <section className="portfolio" id="portfolio">
             <h5 className="portflolio__title">Портфолио</h5>
-            <div className="portfolio__body">
-                <div className="portfolio__item">
-                    <p className="portfolio__name">Статичный сайт</p>
-                    <a  href="#" className="portfolio__link">
+            <ul className="portfolio__body">
+                <li className="portfolio__item">
+                    <a href="https://github.com/AndrewFlow/how-to-learn" className="portfolio__link">
+                        <p className="portfolio__name">Статичный сайт</p>
                         <img className="portfolio__image" src={arrow} alt="стрелка"></img>
                     </a>
-                </div>
-                <div className="portfolio__item">
-                    <p className="portfolio__name">Адаптивный</p>
-                    <a href="#" className="portfolio__link">
+                </li>
+                <li className="portfolio__item">
+                    <a href="https://andrewflow.github.io/russian-travel/" className="portfolio__link">
+                        <p className="portfolio__name">Адаптивный сайт</p>
                         <img className="portfolio__image" src={arrow} alt="стрелка"></img>
                     </a>
-                </div>
-                <div className="portfolio__item">
-                    <p className="portfolio__name">Одностраничное приложение</p>
-                    <a href="#" className="portfolio__link">
+                </li>
+                <li className="portfolio__item">
+                    <a href="https://andrewflow.github.io/mesto/" className="portfolio__link">
+                        <p className="portfolio__name">Одностраничное приложение</p>
                         <img className="portfolio__image" src={arrow} alt="стрелка"></img>
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>
         </section>
     )
 }

@@ -110,6 +110,9 @@
     cursor: pointer;
     opacity: 1;
 }
+.cards__more:hover {
+    opacity: 0.7;
+}
 
 .cards__image {
     width: 364px;

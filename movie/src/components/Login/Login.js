@@ -16,56 +16,58 @@ function Login() {
         setInputs((state) => ({ ...state, [name]: value }));
     }
     return (
-        <section className="login">
-            <div className="login__body">
-                <div className="login__links">
-                    <NavLink className="link" to="/">
-                        <img className="link__logo" src={headerLogo} alt="лого" />
-                    </NavLink>
-                </div>
-                <h2 className="subtitle">Рады видеть!</h2>
-                <form className="form" noValidate>
-                    <p className="form__info">E-mail</p>
-                    <input
-                        type="email"
-                        className="form__input"
-                        name="email"
-                        value={inputs.email}
-                        onChange={handleChange}
-                        minLength='3'
-                        maxLength='40'
-                        required
-                    />
-                    <p className="form__info">Пароль</p>
-                    <input
-                        type="password"
-                        className="form__input  caption"
-                        name="password"
-                        value={inputs.password}
-                        onChange={handleChange}
-                        minLength='7'
-                        maxLength='40'
-                        required
-                    />
-                    <div className="error__container">
-                        <span className="error hidden">Что-то пошло не так...</span>
+        <main>
+            <section className="login">
+                <div className="login__body">
+                    <div className="login__links">
+                        <NavLink className="link" to="/">
+                            <img className="link__logo" src={headerLogo} alt="лого" />
+                        </NavLink>
                     </div>
-                    <div className="login__inner">
-                        <button rype="submit" className="form__button blue">
-                            Войти
-                        </button>
-                        <div className="form__redirect">
-                            <p className="form__linkinfo">
-                                Ещё не зарегистрированы?
-                            </p>
-                            <Link className="form__link" to="/signup">
-                                Регистрация
-                            </Link>
+                    <h2 className="login__title">Рады видеть!</h2>
+                    <form className="form" noValidate>
+                        <p className="form__info">E-mail</p>
+                        <input
+                            type="email"
+                            className="form__input"
+                            name="email"
+                            value={inputs.email}
+                            onChange={handleChange}
+                            minLength='3'
+                            maxLength='40'
+                            required
+                        />
+                        <p className="form__info">Пароль</p>
+                        <input
+                            type="password"
+                            className="form__input  caption"
+                            name="password"
+                            value={inputs.password}
+                            onChange={handleChange}
+                            minLength='7'
+                            maxLength='40'
+                            required
+                        />
+                        <div className="error__container">
+                            <span className="error hidden">Что-то пошло не так...</span>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </section>
+                        <div className="login__inner">
+                            <button rype="submit" className="form__button blue">
+                                Войти
+                            </button>
+                            <div className="form__redirect">
+                                <p className="form__linkinfo">
+                                    Ещё не зарегистрированы?
+                                </p>
+                                <Link className="form__link" to="/signup">
+                                    Регистрация
+                                </Link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
     )
 }
 

@@ -40,7 +40,6 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-
     margin: 0;
 }
 
@@ -103,24 +102,27 @@
         margin: 90px 0px 0px 0px;
     }
     .about__info {
-        max-width: 319px;
         font-size: 12px;
         line-height: 18px;
     }
     .about__items {
-
+        justify-content: center;
+        text-align: left;
         margin: 70px 0 93px 0px;
+    }
+    .about__item {
+        margin-right: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .about__item:last-child {
+        margin-right: 0;
     }
     .about__timeline {
         margin-bottom: 90px;
     }
-    .about__subtitle {
-        max-width: 319px;
 
-    }
-    .about__items {
-        justify-content: space-between;
-    }
 }
 
 @media screen and (max-width: 767px) {
@@ -135,7 +137,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
         margin: 60px 0px;
     }
     .about__subtitle {
@@ -156,7 +157,7 @@
         text-align: center;
     }
     .about__week2 {
-        max-width: 184px;
+        width: 100%;
         font-size: 11px;
         line-height: 13px;
         text-align: center;
@@ -167,15 +168,12 @@
         line-height: 13px;
     }
     .about__front {
-        max-width: 184px;
+        width: 100%;
         font-size: 11px;
         line-height: 13px;
     }
     .about__timeline {
-        max-width: 284px;
         margin: 0 auto;
         width: 100%;
-
-
     }
 }

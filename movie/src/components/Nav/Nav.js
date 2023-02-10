@@ -13,7 +13,8 @@ const Ul = styled.ul`
 `;
 
 const Nav = ({ open }) => {
-  return (<>
+  return (
+  <>
     <Ul className='rightnav' open={open}>
       <li className='rightnav__gap'></li>
       <li className='rightnav__item'>
