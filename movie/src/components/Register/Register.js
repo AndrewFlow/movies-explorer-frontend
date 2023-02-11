@@ -20,19 +20,19 @@ function Register() {
         <main>
 
 
-            <section class="register">
-                <div class="register__body">
-                    <div class="register__links">
-                        <NavLink class="link" to="/">
-                            <img class="link__logo" src={headerLogo} alt="лого" />
+            <section className="register">
+                <div className="register__body">
+                    <div className="register__links">
+                        <NavLink className="link" to="/">
+                            <img className="link__logo" src={headerLogo} alt="лого" />
                         </NavLink>
                     </div>
-                    <h2 class="register__title">Добро пожаловать</h2>
-                    <form class="form" noValidate>
-                        <p class="form__info">Имя</p>
+                    <h2 className="register__title">Добро пожаловать</h2>
+                    <form className="form" noValidate>
+                        <p className="form__info">Имя</p>
                         <input
                             type="name"
-                            class="form__input"
+                            className="form__input"
                             name="name"
                             value={inputs.name}
                             onChange={handleChange}
@@ -40,10 +40,10 @@ function Register() {
                             maxLength='40'
                             required
                         />
-                        <p class="form__info">E-mail</p>
+                        <p className="form__info">E-mail</p>
                         <input
                             type="email"
-                            class="form__input"
+                            className="form__input"
                             name="email"
                             value={inputs.email}
                             onChange={handleChange}
@@ -51,10 +51,10 @@ function Register() {
                             maxLength='40'
                             required
                         />
-                        <p class="form__info">Пароль</p>
+                        <p className="form__info">Пароль</p>
                         <input
                             type="password"
-                            class="form__input caption visible"
+                            className="form__input caption visible"
                             name="password"
                             value={inputs.password}
                             onChange={handleChange}
@@ -62,18 +62,18 @@ function Register() {
                             maxLength='40'
                             required
                         />
-                        <div class="register__container">
-                            <span class="error visible">Что-то пошло не так...</span>
+                        <div className="register__container">
+                            <span className="error visible">Что-то пошло не так...</span>
                         </div>
-                        <div class="register__inner">
-                            <button rype="submit" class="form__button blue">
+                        <div className="register__inner">
+                            <button rype="submit" className="form__button blue">
                                 Зарегистрироваться
                             </button>
-                            <div class="form__redirect">
-                                <p class="form__linkinfo">
+                            <div className="form__redirect">
+                                <p className="form__linkinfo">
                                     Уже зарегистрированы?
                                 </p>
-                                <Link class="form__link" to="/signin">
+                                <Link className="form__link" to="/signin">
                                     Войти
                                 </Link>
                             </div>
