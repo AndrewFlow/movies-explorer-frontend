@@ -48,7 +48,7 @@ function Login() {
                             maxLength='40'
                             required
                         />
-                        <div className="error__container">
+                        <div className="login__container">
                             <span className="error hidden">Что-то пошло не так...</span>
                         </div>
                         <div className="login__inner">

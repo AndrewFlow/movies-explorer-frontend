@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.portflolio__title {
+.portfolio__title {
     font-weight: 400;
     font-size: 18px;
     line-height: 20px;
@@ -70,7 +70,7 @@
         padding: 0px 50px;
     }
 
-    .portflolio__title {
+    .portfolio__title {
         margin: 90px 0px 0px 0px;
     }
 
@@ -96,7 +96,7 @@
             padding: 0px 14px;
         }
 
-        .portflolio__title {
+        .portfolio__title {
             font-size: 14px;
             line-height: 20px;
             margin: 70px 0px 0px 0px;

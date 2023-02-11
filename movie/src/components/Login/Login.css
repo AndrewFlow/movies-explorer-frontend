@@ -15,7 +15,7 @@
 
 .login__links {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .login__inner {
@@ -30,9 +30,18 @@
     margin: 40px 0px;
     padding: 0;
 }
+.login__container {
+    height: 12px;
+  }
 
 
 @media screen and (max-width: 767px) {
+    .login {
+        padding: 70px 30px;
+    }
+
+}
+@media screen and (max-width: 320px) {
     .login {
         padding: 70px 30px;
     }
@@ -45,6 +54,10 @@
     }
     .login__title {
         text-align: center;
+    }
+    .login__links {
+
+        justify-content: center;
     }
 
 

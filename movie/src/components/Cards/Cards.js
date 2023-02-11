@@ -44,8 +44,8 @@ function Cards(props) {
                         <img className="cards__image" src={cardImage} alt="фильм"></img>
                     </li>
                 </ul>
-                <div className='cards__morebutton'>
-                    <button className="cards__more">
+                <div className='elements__morebutton'>
+                    <button className="elements__more">
                         Ещё
                     </button>
                 </div>
