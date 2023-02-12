@@ -1,0 +1,107 @@
+.rightnav {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.rightnav__gap {
+    width: 1px;
+    height: 1px;
+}
+.rightnav__item {
+    display: flex;
+}
+.rightnav__authlink {
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    margin-right: 16px;
+}
+.rightnav__authlink_type_active {
+    font-weight: 500;
+    border-bottom: 2px solid #000;
+}
+.rightnav__authlink_type_main {
+    display: none;
+}
+.rightnav__profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100px;
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}   
+.rightnav__profile-name {
+    margin-right: 13px;
+}
+
+@media (max-width: 768px) {
+    .rightnav {
+        z-index: 3;
+        flex-flow: column nowrap;
+        background: #FAFAFA;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        max-width: 520px;
+        width: 100%;
+        margin: 0;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .rightnav__authlink_type_active {
+        border-bottom: none;
+    }
+    .rightnav__profile {
+        padding-bottom: 92px;
+        align-items: center;
+    }  
+    .rightnav__authlink_type_main {
+        display: block;
+    }
+
+    .rightnav__item:first-child {
+        margin-top: 159px;
+    }
+
+    .rightnav__item:last-child {
+        padding: 0;
+    }
+    .rightnav__authlink {
+        padding-bottom: 28px;
+    }
+    .rightnav__authlink:last-child {
+        padding-bottom: 0;
+    }
+
+    .rightnav__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        color: #000000;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .rightnav__item {
+        margin-top: 100px;
+
+    }
+}
