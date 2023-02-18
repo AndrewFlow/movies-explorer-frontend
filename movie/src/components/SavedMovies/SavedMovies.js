@@ -1,38 +1,69 @@
-import React from "react";
-import Header from "../Header/Header";
-import Cards from "../Cards/Cards";
-import Footer
-    from "../Footer/Footer";
-function SavedMovies() {
+import React, { useEffect, useState } from 'react'
+import SearchForm from '../SearchForm/SearchForm';
+import Cards from '../Cards/Cards';
+import Preloader from '../Preloader/Preloader'
+import shorts from '../utils/Shorts'
+
+import "./SavedMovies.css";
+
+function SavedMovies({ savedMovies, isDeleteMovie }) {
+    const [loading, startLoading] = useState(false);
+    const [isSearchDone, setIsSearchDone] = useState(false);
+    const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
+    const [checkboxStatus, setCheckboxStatus] = useState(false);
+    const [request, setRequest] = useState('');
+
+    function handleSearchSavedMovie(request, checkboxStatus) {
+        initialLoading();
+        const searchResult = shorts(savedMovies, request, checkboxStatus);
+        setFilteredSavedMovies(searchResult);
+        setRequest(request);
+        setCheckboxStatus(checkboxStatus);
+        setIsSearchDone(true);
+    }
+    function initialLoading() {
+        startLoading(true);
+        setTimeout(() => startLoading(false), 1000);
+    }
+    useEffect(() => {
+        if (filteredSavedMovies.length > 0) {
+            const searchResult = shorts(savedMovies, request, checkboxStatus);
+            setFilteredSavedMovies(searchResult);
+        }
+    }, [savedMovies]);
     return (
         <>
-            <Header isLoggedIn={true}></Header>
-            <main>
-                <section className="saved">
-                    <section className="movies">
-                        <form className="forms">
-                            <div className="forms__container">
-                                <input
-                                    name="query"
-                                    className="forms__input"
-                                    type="text"
-                                    placeholder="Фильм"
-                                    required>
-
-                                </input>
-                                <button className="forms__button blue" type="submit">Поиск</button>
+        <main className='saved-movies'>
+            <SearchForm
+                onSearch={handleSearchSavedMovie}
+            />
+            {loading ?
+                <div className="saved-movies__preloader">
+                    <Preloader />
+                </div>
+                : isSearchDone
+                    ? filteredSavedMovies.length > 0
+                        ?
+                        <Cards
+                            movies={filteredSavedMovies}
+                            savedMovies={savedMovies}
+                            isDeleteMovie={isDeleteMovie}
+                        />
+                        : (
+                            <div className="saved-movies__container">
+                                <span className="saved-movies__empty">Нет совпадений</span>
                             </div>
-                            <label className="forms__checkboxes">
-                                <input type="checkbox"></input>
-                                <span className="checkbox-swtich"></span>
-                                <span className="movies__type">Короткометражки</span>
-                            </label>
-                        </form>
-                    </section>
-                    <Cards></Cards>
-                </section>
-            </main>
-            <Footer></Footer>
+                        )
+                    : (
+                        <Cards
+                            movies={savedMovies}
+                            savedMovies={savedMovies}
+                            isDeleteMovie={isDeleteMovie}
+                        />
+                    )
+            }
+
+        </main>
         </>
     )
 }

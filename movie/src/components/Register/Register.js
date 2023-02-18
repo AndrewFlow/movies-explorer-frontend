@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Register.css";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import headerLogo from '../../images/logo.svg';
+import auth from "../utils/auth";
+import useFormWithValidation from '../hooks/useFormWithValidation';
+import Error from '../Error/Error.js';
 
 
-function Register() {
-    const defaultInputs = {
-        email: "",
-        password: ""
-    };
-    const [inputs, setInputs] = React.useState(defaultInputs);
-    function handleChange(e) {
-        const value = e.target.value;
-        const name = e.target.name;
-        setInputs((state) => ({ ...state, [name]: value }));
+function Register({ registerError, onRegister }) {
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+    //сброс фоормы
+    useEffect(() => {
+        resetForm({}, {}, false);
+    }, [resetForm]);
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onRegister(values)
     }
 
     return (
         <main>
-
-
             <section className="register">
                 <div className="register__body">
                     <div className="register__links">
@@ -28,42 +30,52 @@ function Register() {
                         </NavLink>
                     </div>
                     <h2 className="register__title">Добро пожаловать</h2>
-                    <form className="form" noValidate>
+                    <form onSubmit={handleSubmit} className="form" noValidate>
                         <p className="form__info">Имя</p>
                         <input
                             type="name"
                             className="form__input"
                             name="name"
-                            value={inputs.name}
+                            value={values.name}
                             onChange={handleChange}
                             minLength='3'
                             maxLength='40'
                             required
+                        />
+                        <Error
+                            errorMessage={errors.name}
                         />
                         <p className="form__info">E-mail</p>
                         <input
                             type="email"
                             className="form__input"
                             name="email"
-                            value={inputs.email}
+                            value={values.email}
                             onChange={handleChange}
                             minLength='3'
                             maxLength='40'
                             required
                         />
+                        <Error
+                            errorMessage={errors.email}
+                        />
                         <p className="form__info">Пароль</p>
                         <input
                             type="password"
-                            className="form__input caption visible"
+                            className="form__input caption"
                             name="password"
-                            value={inputs.password}
+                            value={values.password}
                             onChange={handleChange}
                             minLength='7'
                             maxLength='40'
                             required
                         />
+                        <Error
+                            errorMessage={errors.password}
+                        />
                         <div className="register__container">
-                            <span className="error visible">Что-то пошло не так...</span>
+                            <Error
+                                errorMessage={registerError} />
                         </div>
                         <div className="register__inner">
                             <button rype="submit" className="form__button blue">

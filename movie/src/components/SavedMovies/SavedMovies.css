@@ -1,0 +1,31 @@
+.saved-movies {
+    padding: 0px 30px;
+}
+.saved-movies__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.saved-movies__empty {
+    padding: 20px 0px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+@media screen and (max-width: 767px) {
+    .saved-movies {
+        padding: 0px 14px;
+    }
+    .saved-movies__empty {
+        font-size: 15px;
+        line-height: 29px;
+    
+    }
+
+}

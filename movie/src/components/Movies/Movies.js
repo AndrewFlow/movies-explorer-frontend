@@ -1,38 +1,55 @@
 import React from "react";
 import "./Movies.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import SearchForm from '../SearchForm/SearchForm';
 import Cards from "../Cards/Cards";
+import Preloader from '../Preloader/Preloader'
 
-
-function Movies() {
+function Movies({
+    onSearch,
+    loading,
+    Searching,
+    SearchEnd,
+    renderedMovies,
+    savedMovies,
+    isSaveMovie,
+    isDeleteMovie,
+    moreLoadingButton,
+    isRenderMovies,
+}) {
     return (
         <>
-            <Header isLoggedIn={true}></Header>
-            <main>
-                <section className="movies">
-                    <form className="forms">
-                        <div className="forms__container">
-                            <input
-                                name="query"
-                                className="forms__input"
-                                type="text"
-                                placeholder="Фильм"
-                                required>
-
-                            </input>
-                            <button className="forms__button blue" type="submit">Поиск</button>
-                        </div>
-                        <label className="forms__checkboxes">
-                            <input type="checkbox"></input>
-                            <span className="checkbox-swtich"></span>
-                            <span className="movies__type">Короткометражки</span>
-                        </label>
-                    </form>
-                </section>
-                <Cards></Cards>
+            <main className='movies'>
+                <SearchForm
+                    onSearch={onSearch} />
+                {loading ?
+                    <div className="movies__preloader">
+                        <Preloader />
+                    </div>
+                    : Searching
+                        ? renderedMovies.length > 0
+                            ? <Cards
+                                movies={renderedMovies}
+                                savedMovies={savedMovies}
+                                isSaveMovie={isSaveMovie}
+                                isDeleteMovie={isDeleteMovie}
+                                loading={loading}
+                                Searching={Searching}
+                                isRenderMovies={isRenderMovies}
+                                moreLoadingButton={moreLoadingButton}
+                            />
+                            : (!loading ?
+                                <div className="movies__container">
+                                    <span className="movies__empty">Нет совпадений</span>
+                                </div>
+                                :
+                                <div className="movies__container">
+                                    <span className="movies__text">{SearchEnd}</span>
+                                </div>
+                            )
+                        : ("")
+                }
             </main>
-            <Footer></Footer>
+
         </>
     )
 }

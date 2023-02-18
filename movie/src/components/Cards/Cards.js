@@ -1,57 +1,50 @@
-import React, { useState } from 'react';
-import "./Cards.css";
-import cardImage from "../../images/poster.jpg"
+import React from 'react';
+
+import Card from '../Card/Card';
+import './Cards.css';
 
 
-function Cards(props) {
-    const [isActive, setState] = React.useState(true)
-    function handleClick() {
-        setState(!isActive);
-    };
-    const cardLikeButtonClassName = `cards__button ${isActive ? 'cards__button_active' : ''}`;
+function Cards({
+    movies,
+    savedMovies,
+    isSaveMovie,
+    isDeleteMovie,
+    loading,
+    Searching,
+    isRenderMovies,
+    moreLoadingButton,
+}) {
+
+    const moreButton = moreLoadingButton ? `elements__more` : `elements__morebutton-disabled`;
+
     return (
-        <>
-            <section className="elements">
-                <ul className="cards">
-                    <li className="cards__item">
-                        <div className="cards__body">
-                            <div className="cards__info">
-                                <h3 className="cards__title">Рик и Морти</h3>
-                                <span className="cards__time">2 ч</span>
-                            </div>
-                            <button className={cardLikeButtonClassName} onClick={handleClick}></button>
-                        </div>
-                        <img className="cards__image" src={cardImage} alt="фильм"></img>
-                    </li>
-                    <li className="cards__item">
-                        <div className="cards__body">
-                            <div className="cards__info">
-                                <h3 className="cards__title">Рик и Морти</h3>
-                                <span className="cards__time">2 ч</span>
-                            </div>
-                            <button className={cardLikeButtonClassName} onClick={handleClick}></button>
-                        </div>
-                        <img className="cards__image" src={cardImage} alt="фильм"></img>
-                    </li>
-                    <li className="cards__item">
-                        <div className="cards__body">
-                            <div className="cards__info">
-                                <h3 className="cards__title">Рик и Морти</h3>
-                                <span className="cards__time">2 ч</span>
-                            </div>
-                            <button className={cardLikeButtonClassName} onClick={handleClick}></button>
-                        </div>
-                        <img className="cards__image" src={cardImage} alt="фильм"></img>
-                    </li>
-                </ul>
-                <div className='elements__morebutton'>
-                    <button className="elements__more">
-                        Ещё
-                    </button>
-                </div>
-            </section>
-        </>
-    )
-}
+        <section className='elements'>
+            <ul className='cards'>
+                {movies.map((movie) => (
+                    <Card
+                        movie={movie}
+                        key={movie._id || movie.id}
+                        savedMovies={savedMovies}
+                        isSaveMovie={isSaveMovie}
+                        isDeleteMovie={isDeleteMovie}
+                    />
+                ))}
+            </ul>
+            {!loading ? Searching
+                ? <>
+                    <div className='elements__morebutton'>
+                        <button
+                            onClick={isRenderMovies}
+                            className={moreButton}
+                            aria-label='Загрузить ещё'
+                            type='button'>Ещё</button>
+                    </div>
+                </>
+                : ("")
+                : ("")
+            }
+        </section>
+    );
+};
 
 export default Cards;

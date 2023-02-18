@@ -20,34 +20,33 @@ const Nav = styled.nav`
   }
 `
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ loggedIn }) => {
 
     return (
         <header className="header">
-            {
-                isLoggedIn
-                    ? (
-                        <>
-                            <Link className="header__link" to="/">
-                                <img className="header__logo" src={headerLogo} alt="лого" />
-                            </Link>
-                            <nav className="header__body">
-                                <Navbar></Navbar>
-                            </nav>
+            {(!loggedIn)
+                ? (
+                    <>
+                        <Link className="header__link" to="/">
+                            <img className="header__logo" src={headerLogo} alt="лого" />
+                        </Link>
+                        <nav className="header__menu">
+                            <Link className="header__link" to="/signup">Регистрация</Link>
+                            <Link className="header__link header__link_type_blue blue" to="/signin">Войти</Link>
+                        </nav>
+                    </>
+                )
+                : (
+                    <>
+                        <Link className="header__link" to="/">
+                            <img className="header__logo" src={headerLogo} alt="лого" />
+                        </Link>
+                        <nav className="header__body">
+                            <Navbar></Navbar>
+                        </nav>
 
-                        </>
-                    )
-                    : (
-                        <>
-                            <Link className="header__link" to="/">
-                                <img className="header__logo" src={headerLogo} alt="лого" />
-                            </Link>
-                            <nav className="header__menu">
-                                <Link className="header__link" to="/signup">Регистрация</Link>
-                                <Link className="header__link header__link_type_blue blue" to="/signin">Войти</Link>
-                            </nav>
-                        </>
-                    )
+                    </>
+                )
             }
 
         </header>

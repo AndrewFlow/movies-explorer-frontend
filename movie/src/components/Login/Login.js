@@ -2,18 +2,17 @@ import React from "react";
 import "./Login.css";
 import { Link, NavLink } from 'react-router-dom';
 import headerLogo from '../../images/logo.svg';
+import useFormWithValidation from '../hooks/useFormWithValidation';
+import Error from '../Error/Error';
 
 
-function Login() {
-    const defaultInputs = {
-        email: "",
-        password: ""
-    };
-    const [inputs, setInputs] = React.useState(defaultInputs);
-    function handleChange(e) {
-        const value = e.target.value;
-        const name = e.target.name;
-        setInputs((state) => ({ ...state, [name]: value }));
+function Login({ onLogin, loginError }) {
+
+    const { values, handleChange, errors } = useFormWithValidation();
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onLogin(values)
     }
     return (
         <main>
@@ -25,32 +24,34 @@ function Login() {
                         </NavLink>
                     </div>
                     <h2 className="login__title">Рады видеть!</h2>
-                    <form className="form" noValidate>
+                    <form className="form" onSubmit={handleSubmit} noValidate>
                         <p className="form__info">E-mail</p>
-                        <input
+                        <input className="form__input"
                             type="email"
-                            className="form__input"
                             name="email"
-                            value={inputs.email}
+                            placeholder="E-mail"
+                            value={values.email || ''}
                             onChange={handleChange}
-                            minLength='3'
-                            maxLength='40'
                             required
+                        />
+                        <Error
+                            errorMessage={errors.email}
                         />
                         <p className="form__info">Пароль</p>
-                        <input
+                        <input className="form__input  caption"
                             type="password"
-                            className="form__input  caption"
                             name="password"
-                            value={inputs.password}
+                            placeholder="Пароль"
                             onChange={handleChange}
-                            minLength='7'
-                            maxLength='40'
+                            value={values.password || ''}
+                            minLength="4"
                             required
                         />
-                        <div className="login__container">
-                            <span className="error hidden">Что-то пошло не так...</span>
-                        </div>
+                        <Error
+                            errorMessage={errors.password}
+                        />
+                        <Error
+                            errorMessage={loginError} />
                         <div className="login__inner">
                             <button rype="submit" className="form__button blue">
                                 Войти
