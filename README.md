@@ -6,4 +6,4 @@
 
 Ссылка на сайт https://andflowfrontdimpoma.nomoredomains.rocks/
 
-Ссылка на пулл реквест 
+Ссылка на пулл реквест https://github.com/AndrewFlow/movies-explorer-frontend/pull/2
