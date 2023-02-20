@@ -1,20 +1,16 @@
 import React, { useEffect } from "react";
 import "./Register.css";
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import headerLogo from '../../images/logo.svg';
-import auth from "../utils/auth";
 import useFormWithValidation from '../hooks/useFormWithValidation';
 import Error from '../Error/Error.js';
 
 
 function Register({ registerError, onRegister }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-
-    //сброс фоормы
     useEffect(() => {
         resetForm({}, {}, false);
     }, [resetForm]);
-
     function handleSubmit(evt) {
         evt.preventDefault();
         onRegister(values)
@@ -43,7 +39,7 @@ function Register({ registerError, onRegister }) {
                             required
                         />
                         <Error
-                            errorMessage={errors.name}
+                            err={errors.name}
                         />
                         <p className="form__info">E-mail</p>
                         <input
@@ -57,7 +53,7 @@ function Register({ registerError, onRegister }) {
                             required
                         />
                         <Error
-                            errorMessage={errors.email}
+                            err={errors.email}
                         />
                         <p className="form__info">Пароль</p>
                         <input
@@ -71,14 +67,16 @@ function Register({ registerError, onRegister }) {
                             required
                         />
                         <Error
-                            errorMessage={errors.password}
+                            err={errors.password}
                         />
                         <div className="register__container">
                             <Error
-                                errorMessage={registerError} />
+                                err={registerError} />
                         </div>
                         <div className="register__inner">
-                            <button rype="submit" className="form__button blue">
+                            <button rype="submit" disabled={!isValid}
+                                style={!isValid ?
+                                    { backgroundColor: '#E8E8E8', color: 'black', opacity: '.5', cursor: 'auto' } : null} className="form__button blue">
                                 Зарегистрироваться
                             </button>
                             <div className="form__redirect">

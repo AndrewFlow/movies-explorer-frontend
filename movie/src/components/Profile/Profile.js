@@ -65,14 +65,13 @@ function Profile({ onUpdateUser, onSignOut, profileMessage }) {
                                 type='text'
                                 id='input-name'
                                 name='name'
-                                value={values.name || ''}
+                                value={values.name }
                                 placeholder='Имя'
                                 onChange={handleChangeName}
                                 minLength="2"
-                                pattern="[а-яА-Яa-zA-ZёË\- ]{1,}"
                                 required />
                         </label>
-                        <span className='profile__error'>{errors.name || ''}</span>
+                        <span className='profile__error'>{errors.name}</span>
                         
                         <label className='profile__container'>
                             <p className='profile__email'>E-mail</p>
@@ -80,13 +79,12 @@ function Profile({ onUpdateUser, onSignOut, profileMessage }) {
                                 type='email'
                                 name='email'
                                 id='edit-email'
-                                value={values.email || ''}
-                                pattern="^\S+@\S+\.\S+$"
+                                value={values.email}
                                 placeholder='E-mail'
                                 onChange={handleChangeEmail}
                                 required />
                         </label>
-                        <span className='profile__error'>{errors.email || ''}</span>
+                        <span className='profile__error'>{errors.email}</span>
                         <span className="profile__error-text">{profileMessageText}</span>
                     </fieldset>
 

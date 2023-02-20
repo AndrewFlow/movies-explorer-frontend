@@ -46,6 +46,6 @@ class Auth {
     
   }
   
-  const auth = new Auth('http://localhost:3001');
+  const auth = new Auth('https://AndFlowDimpoma.nomoredomains.rocks');
   
   export default auth;

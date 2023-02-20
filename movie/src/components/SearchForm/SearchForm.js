@@ -12,7 +12,7 @@ function SearchForm({ onSearch }) {
 
     const [request, setRequest] = useState('');
     const [checkboxStatus, setCheckboxStatus] = useState(false);
-    const [noSearchResult, setNoSearchResult] = useState(null);
+    const [noResult, setnoResult] = useState(null);
 
     useEffect(() => {
         if (location.pathname === '/movies') {
@@ -30,7 +30,6 @@ function SearchForm({ onSearch }) {
         }
     }, [location.pathname]);
 
-    //чекбокс
     function toggleCheckbox(checkboxStatus) {
         setCheckboxStatus(checkboxStatus);
         onSearch(request, checkboxStatus);
@@ -48,7 +47,7 @@ function SearchForm({ onSearch }) {
     function handleSubmit(evt) {
         evt.preventDefault();
         if (!request) {
-            setNoSearchResult('Нужно ввести ключевое слово');
+            setnoResult('Не может быть пустым');
         }
         onSearch(request, checkboxStatus);
     }

@@ -6,9 +6,9 @@ import useFormWithValidation from '../hooks/useFormWithValidation';
 import Error from '../Error/Error';
 
 
-function Login({ onLogin, loginError }) {
+function Login({ onLogin, loginError, }) {
 
-    const { values, handleChange, errors } = useFormWithValidation();
+    const { values, handleChange, errors ,isValid} = useFormWithValidation();
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -35,7 +35,7 @@ function Login({ onLogin, loginError }) {
                             required
                         />
                         <Error
-                            errorMessage={errors.email}
+                            err={errors.email}
                         />
                         <p className="form__info">Пароль</p>
                         <input className="form__input  caption"
@@ -48,12 +48,14 @@ function Login({ onLogin, loginError }) {
                             required
                         />
                         <Error
-                            errorMessage={errors.password}
+                            err={errors.password}
                         />
                         <Error
-                            errorMessage={loginError} />
+                            err={loginError} />
                         <div className="login__inner">
-                            <button rype="submit" className="form__button blue">
+                            <button type="submit" disabled={!isValid}
+                            style={!isValid ?
+                                { backgroundColor: '#E8E8E8', color:'black', opacity: '.5' , cursor:'auto' } : null} className="form__button blue">
                                 Войти
                             </button>
                             <div className="form__redirect">

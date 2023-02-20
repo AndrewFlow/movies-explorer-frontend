@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 
-//хук управления формой и валидации формы
 function useFormWithValidation() {
     const [values, setValues] = React.useState({
         name: '',
@@ -28,7 +27,7 @@ function useFormWithValidation() {
         [setValues, setErrors, setIsValid]
     );
 
-    return { values, setValues, handleChange, errors, setErrors, isValid, setIsValid, resetForm };
+    return { values, handleChange, setValues,  errors, setErrors, isValid, setIsValid, resetForm };
 }
 
 export default useFormWithValidation;
