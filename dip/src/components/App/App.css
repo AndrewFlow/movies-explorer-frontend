@@ -1,0 +1,189 @@
+#root {
+  background: #202020;
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  margin: 0 auto;
+  max-width: 1280px;
+  background: #202020;
+  font-family: 'Inter', sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.blue {
+  color: white;
+  background: #4285F4;
+  cursor: pointer;
+}
+
+.blue:hover {
+  background: #689df6;
+  cursor: pointer;
+}
+
+.visible {
+  display: block;
+  color: #EE3465;
+}
+
+
+
+.error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  padding-top: 10px;
+}
+
+.link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+
+.link__logo {
+  display: block;
+  max-width: 50px;
+  max-height: 50px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__info {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+  margin: 20px 0px 10px;
+}
+
+.form__input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #424242;
+  color: #F4F4F4;
+}
+.form__input:focus {
+  outline:none;
+  border-bottom: 1px solid #4285F4;
+}
+
+.forms__button {
+  width: 70px;
+  height: 44px;
+  border-radius: 3px;
+  border: none;
+}
+
+.form__button {
+  border: none;
+  width: 396px;
+  height: 45px;
+  background: #4285F4;
+  border-radius: 3px;
+}
+
+.form__redirect {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.form__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #4285F4;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.form__link:hover {
+  color: #4285F4;
+
+}
+
+.form__linkinfo {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+}
+
+.form__linkinfo {
+  margin: 0;
+  padding: 0;
+
+}
+
+
+
+@media screen and (max-width: 767px) {
+  #root {
+    height: 100vh;
+  }
+
+  .caption {
+    font: small-caption;
+  }
+
+  .form__input {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    padding-left: 12px;
+  }
+
+  .forms__button {
+    width: 70px;
+    height: 44px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__button {
+    width: 260px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .form__linkinfo {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+}

@@ -1,0 +1,161 @@
+.forms {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;    
+    border-bottom: 1px solid #424242;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.forms__container {
+    display: flex;
+    align-items: center;
+}
+
+.forms__input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2F2F2F;
+    box-sizing: border-box;
+    color: #fff;
+    padding-left: 25px;
+    margin: 0;
+}
+.forms__input::placeholder {
+    color: #A0A0A0;
+}
+
+.forms__button {
+    top: 10px;
+    bottom: 10px;
+    right: 8px;
+    border: none;
+    width: 100px;
+    height: 44px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0px 0px 0px 10px;
+
+}
+
+.movies__type {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #fff;
+    margin-left: 15px;
+    text-align: center;
+}
+
+
+
+.forms__checkboxes {
+    display: inline-flex;
+    height: 28px;
+    margin: 30px 0px 39px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.forms__checkboxes .checkbox-swtich {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    border-radius: 20px;
+    vertical-align: center;
+    background: #343434;
+    transition: .2s;
+}
+
+.forms__checkboxes .checkbox-swtich:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #A0A0A0;
+    transition: .15s;
+    border: 1px solid #FFFFFF;
+}
+
+.forms__checkboxes input[type=checkbox] {
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.forms__checkboxes input[type=checkbox]:not(:disabled):active+.checkbox-swtich:before {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+}
+
+
+
+.forms__checkboxes:checked .checkbox-swtich:before {
+    background: #2BE080;
+}
+
+.forms__checkboxes input[type=checkbox]:checked+.checkbox-swtich:before {
+    transform: translateX(20px);
+    background: #2BE080;
+}
+
+.forms__checkboxes input[type="checkbox"]:not(:disabled)+.checkbox-swtich {
+    cursor: pointer;
+}
+
+.forms__checkboxes input[type=checkbox]:disabled+.checkbox-swtich {
+    filter: grayscale(70%);
+}
+
+.checkbox input[type="checkbox"]:disabled+.checkbox-swtich:before {
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 1279px) {
+    .movies {
+        padding: 0px 30px;
+    }
+    .forms__button {
+        right: 10px;
+    }
+
+    .forms__checkboxes {
+        margin: 27px 0px 55px;
+    }
+    
+}
+
+@media screen and (max-width: 767px) {
+    .movies {
+        padding: 0px 14px;
+    }
+    .forms {
+        margin: 0 auto;
+
+    }
+    .forms__button {
+        width: 80px;
+        height: 44px;
+        right:6px;
+        top: 6px;
+    }
+    .forms__checkboxes {
+        margin: 31px 0px 64px;
+    }
+}
