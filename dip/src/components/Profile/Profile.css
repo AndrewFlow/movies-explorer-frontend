@@ -13,7 +13,10 @@
 }
 
 .profile__body {
-    margin-bottom: 220px;
+    margin:0px 0px 220px 0px;
+    border: none;
+    padding: 0;
+
 }
 
 .profile__namecontainer {
@@ -24,6 +27,11 @@
 
 }
 
+.profile__error {
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
+}
 .profile__name {
     font-weight: 500;
     font-size: 11px;
@@ -37,6 +45,9 @@
     line-height: 13px;
     text-align: right;
     color: #fff;
+    background-color: #202020;
+    border: none;
+
 }
 
 .profile__emailcontainer {
@@ -78,6 +89,9 @@
     align-items: center;
     text-align: center;
     color: #fff;
+    border: none;
+    background-color: #202020;
+    cursor: pointer;
 }
 
 .profile__exit {

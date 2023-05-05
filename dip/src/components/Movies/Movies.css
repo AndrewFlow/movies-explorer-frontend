@@ -19,9 +19,9 @@
     border-radius: 8px;
     background-color: #2F2F2F;
     box-sizing: border-box;
-    color: #fff;
     padding-left: 25px;
     margin: 0;
+    color: #fff;
 }
 .forms__input::placeholder {
     color: #A0A0A0;

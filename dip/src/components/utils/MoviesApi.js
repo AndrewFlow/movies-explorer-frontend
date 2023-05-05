@@ -11,14 +11,15 @@ class MoviesApi {
         }
     }
 
-    getMovies() {
+    getCards() {
         return fetch(`${this._url}/beatfilm-movies`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
+            
         })
-        .then(this._check)
+        .then(res => this._check(res))
     }
 }
 

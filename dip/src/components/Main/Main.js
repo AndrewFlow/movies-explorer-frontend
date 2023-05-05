@@ -9,10 +9,10 @@ import Techs from "../Techs/Techs";
 
 
 
-function Main() {
+function Main({ LogIn }) {
     return (
         <>
-            <Header isLoggedIn={false}></Header>
+            {(!LogIn) ? (<Header isLoggedIn={false}></Header>) : (<Header isLoggedIn={true}></Header>)}
             <main>
                 <Promo></Promo>
                 <AboutProject></AboutProject>
