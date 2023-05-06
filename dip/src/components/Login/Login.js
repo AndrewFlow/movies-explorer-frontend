@@ -7,18 +7,20 @@ import auth from "../utils/Auth";
 
 
 function Login({ onLogin }) {
-
-    const [password, setDataName] = React.useState('');
-    const [email, setDataMail] = React.useState('');
-    const [nameDirty, setNameDirty] = React.useState('false');
-    const [emailDirty, setEmailDirty] = React.useState('false');
-    const [nameError, setNameError] = React.useState('Поле Имя не может быть пустым');
-    const [emailError, setMailError] = React.useState('Поле email не может быть пустым');
-    const [formValid, setFormValid] = React.useState('false');
     const navigate = useNavigate();
 
-    const handleDescription = (e) => {
-        setDataMail(e.target.value);
+    const [password, setPassword] = React.useState('');
+    const [passwordDirty, setPasswordDirty] = React.useState('false');
+    const [passwordError, setNameError] = React.useState('Поле пароль не может быть пустым');
+
+    const [email, setMail] = React.useState('');
+    const [emailDirty, setEmailDirty] = React.useState('false');
+    const [emailError, setMailError] = React.useState('Поле email не может быть пустым');
+
+    const [formValid, setFormValid] = React.useState('false');
+
+    const handlePassword = (e) => {
+        setMail(e.target.value);
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if (!re.test(String(e.target.value).toLowerCase())) {
             setMailError('Email неккоректен')
@@ -27,7 +29,7 @@ function Login({ onLogin }) {
         }
     }
     const handleUserName = (e) => {
-        setDataName(e.target.value);
+        setPassword(e.target.value);
         if (e.target.value.length < 7 || e.target.value.length > 40) {
             setNameError('Поле должно содержать не меньше 7 и не больше 40 символов')
             if (!e.target.value) {
@@ -37,13 +39,13 @@ function Login({ onLogin }) {
             setNameError('')
         }
     }
-    const blurHandler = (e) => {
+    const inputsHandler = (e) => {
         switch (e.target.name) {
             case 'email':
                 setEmailDirty(true)
                 break;
             case 'password':
-                setNameDirty(true)
+                setPasswordDirty(true)
                 break;
         }
     }
@@ -57,18 +59,18 @@ function Login({ onLogin }) {
             })
             .catch(() => {
                 alert("Неккоректно заполнено одно из полей. Попробуйте еще раз.");
-                setDataName('')
-                setDataMail('')
+                setPassword('')
+                setMail('')
             })
 
     }
     useEffect(() => {
-        if (emailError || nameError) {
+        if (emailError || passwordError) {
             setFormValid(false)
         } else {
             setFormValid(true)
         }
-    }, [emailError, nameError])
+    }, [emailError, passwordError])
     return (
         <main>
             <section className="login">
@@ -86,13 +88,13 @@ function Login({ onLogin }) {
                             className="form__input"
                             name="email"
                             value={email}
-                            onChange={e => handleDescription(e)}
-                            onBlur={e => blurHandler(e)}
+                            onChange={e => handlePassword(e)}
+                            onBlur={e => inputsHandler(e)}
                             minLength='7'
                             maxLength='40'
                             required
                         />
-                        {(emailDirty && emailError) && <span className="profile__error" style={{ color: 'red' }}>{emailError}</span>}
+                        {(emailDirty && emailError) && <span className="profile__error" style={{ color: '#EE3465' }}>{emailError}</span>}
 
                         <p className="form__info">Пароль</p>
                         <input
@@ -100,13 +102,13 @@ function Login({ onLogin }) {
                             className="form__input caption"
                             name="password"
                             value={password}
-                            onBlur={e => blurHandler(e)}
+                            onBlur={e => inputsHandler(e)}
                             onChange={e => handleUserName(e)}
                             minLength='4'
                             maxLength='40'
                             required
                         />
-                        {(nameDirty && nameError) && <span className="profile__error" style={{ color: 'red' }}>{nameError}</span>}
+                        {(passwordDirty && passwordError) && <span className="profile__error" style={{ color: '#EE3465' }}>{passwordError}</span>}
                         <div className="login__container">
                             <span className="error hidden">Что-то пошло не так...</span>
                         </div>
