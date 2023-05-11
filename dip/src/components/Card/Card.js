@@ -50,7 +50,7 @@ const Card = ({ item, cardSave, SavedCards, cardDelete }) => {
                         </button>}
                     {location.pathname === '/saved-movies' &&
                         <button type='button'
-                            className='cards__button_active'
+                            className='cards__button_delete'
                             onClick={deleteCard}>
                         </button>}
                 </div>

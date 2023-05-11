@@ -84,6 +84,22 @@
     margin: 0;
     box-sizing: border-box;
 }
+.cards__button_delete {
+    width: 30px;
+    height: 30px;
+    background-image: url('../../images/delete.svg');
+    transition: all 0.1s ease-in-out;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    background-position: 50% 50%;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 .cards__info {
     display: flex;
