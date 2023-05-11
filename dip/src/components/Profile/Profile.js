@@ -13,6 +13,8 @@ function Profile({ onLogout, onUpdateUser }) {
     const [nameError, setNameError] = React.useState('');
     const [emailError, setMailError] = React.useState('');
 
+    const [disabled, setDisabled] = React.useState('false');
+
     const currentUser = React.useContext(CurrentUserContext);
 
     const handleDescription = (e) => {
@@ -28,15 +30,23 @@ function Profile({ onLogout, onUpdateUser }) {
     const handleUserName = (e) => {
         e.preventDefault();
         setDataName(e.target.value);
+        if (e.target.name !== currentUser.name || e.target.email !== currentUser.email) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
         if (e.target.value.length < 2 || e.target.value.length > 40) {
             setNameError('Поле должно содержать не меньше 2 и не больше 40 символов')
-            if(!e.target.value) {
+            if (!e.target.value) {
                 setNameError('Поле не может быть пустым')
             }
         } else {
             setNameError('')
         }
+
     }
+
+
     const blurHandler = (e) => {
         switch (e.target.name) {
             case 'email':
@@ -59,6 +69,9 @@ function Profile({ onLogout, onUpdateUser }) {
         setDataName(currentUser.name);
         setDataMail(currentUser.email);
     }, [currentUser]);
+
+
+
     return (
         <>
             <Header isLoggedIn={true}></Header>
@@ -69,21 +82,25 @@ function Profile({ onLogout, onUpdateUser }) {
                         <fieldset className="profile__body">
                             <div className="profile__namecontainer">
                                 <span className="profile__name">Имя</span>
-                                <input className="profile__nameinner" id="name-input" onBlur={e => blurHandler(e)} onChange={e => handleUserName(e)}  value={name} name="name" type="text" required 
+                                <input className="profile__nameinner" id="name-input" onBlur={e => blurHandler(e)} onChange={e => handleUserName(e)} value={name} name="name" type="text" required
                                     minLength="2" maxLength="40" />
                             </div>
                             {(nameDirty && nameError) && <span className="profile__error" style={{ color: 'red' }}>{nameError}</span>}
                             <div className="profile__emailcontainer">
                                 <span className="profile__email">E-mail</span>
-                                <input className="profile__nameinner" id="mail-input" onBlur={e => blurHandler(e)} onChange={e => handleDescription(e)} value={email} name="email" type="email" required 
+                                <input className="profile__nameinner" id="mail-input" onBlur={e => blurHandler(e)} onChange={e => handleDescription(e)} value={email} name="email" type="email" required
                                     minLength="2" maxLength="40" />
                             </div>
                             {(emailDirty && emailError) && <span className="profile__error" style={{ color: 'red' }}>{emailError}</span>}
                         </fieldset>
                         <div className="profile__edit">
-                            <button
+                            {disabled ? (<button
                                 type="submit"
-                                className="profile__link">Сохранить</button>
+                                className="profile__link" disabled
+                            >Сохранить</button>) : (<button
+                                type="submit"
+                                className="profile__link"
+                            >Сохранить</button>)}
                             <Link className="profile__exit" onClick={onLogout} to='/signin'>Выйти из аккаунта</Link>
                         </div>
                     </form>
