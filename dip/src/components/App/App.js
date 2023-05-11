@@ -24,6 +24,7 @@ function App() {
   const [LogIn, setLogIn] = useState(false);
   const [load, setLoad] = useState(false);
   const [SavedCards, setSavedCards] = useState([]);
+  const location = useLocation();
 
   // Достаем фильмы из API
   useEffect(() => {
@@ -50,7 +51,7 @@ function App() {
           if (res) {
             setLogIn(true)
             setUser(res)
-            navigate("/movies")
+            navigate(location)
           }
         })
         .catch(console.error);
