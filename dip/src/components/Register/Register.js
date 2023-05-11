@@ -4,7 +4,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import headerLogo from '../../images/logo.svg';
 import auth from "../utils/Auth";
 
-function Register() {
+function Register({ onLogin }) {
     const [name, setDataName] = React.useState('');
     const [email, setDataMail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -70,10 +70,17 @@ function Register() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        auth.registration({ name, email, password }).then(() => {
-            navigate("/signin");
-        })
+        auth.registration({ name, email, password })
+            .then(() => {
+                auth.authorization({ email, password })
+                    .then((res) => {
+                        if (res.token) localStorage.setItem('token', res.token);
+                        onLogin();
+                        navigate("/movies");
+                    })
+            })
             .catch((err) => {
+                console.log(err)
                 if (err === 'Ошибка: 409') {
                     alert('Email уже зарегестрирован');
                 }

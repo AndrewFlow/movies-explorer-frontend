@@ -158,7 +158,7 @@ function App() {
           } />
           <Route exact path="/signup" element={
             <>
-              <Register />
+              <Register onLogin={handleLogin} />
             </>} />
           <Route path="/*" element={<NotFound />}>
           </Route>
