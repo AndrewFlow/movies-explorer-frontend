@@ -2,27 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import "./Cards.css";
 import Preloader from '../Preloader/Preloader';
+import {shorts,largeCards,mediumCards,smallCards,largeScreen,mediumScreen,smallScreen} from '../utils/constants'
 
 function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard, savedMovie }) {
     const [value, setValue] = useState('');
     const [checkBox, setCheckBox] = useState(false);
     const [visible, setVisible] = useState(8);
     const [isLoading, setIsLoading] = useState(true);
+
     function widthCounterHandler() {
-        if (window.innerWidth >= 1280) {
-            return 8
+        if (window.innerWidth >= largeScreen) {
+            return largeCards
         }
-        else if (window.innerWidth <= 1279) {
-            return 6
-        } else if (window.innerWidth <= 768) {
-            return 4
+        else if (window.innerWidth <= mediumScreen) {
+            return mediumCards
+        } else if (window.innerWidth <= smallScreen) {
+            return smallCards
         }
     }
     const showMoreItems = () => {
         setVisible(prevState => prevState + widthCounterHandler())
     }
 
-    const chechboxCards = [...cards].filter((v) => v.duration < 40);
+    const chechboxCards = [...cards].filter((v) => v.duration < shorts);
     const chechboxCardsDone = chechboxCards.filter(movie => {
         return movie.nameRU.toLowerCase().includes(value.toLowerCase())
 
@@ -35,13 +37,13 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard, savedMovie 
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1280) {
-                setVisible(8);
+            if (window.innerWidth >= largeScreen) {
+                return largeCards
             }
-            else if (window.innerWidth <= 1279) {
-                setVisible(6);
-            } else if (window.innerWidth <= 768) {
-                setVisible(4);
+            else if (window.innerWidth <= mediumScreen) {
+                return mediumCards
+            } else if (window.innerWidth <= smallScreen) {
+                return smallCards
             }
         };
         window.addEventListener('resize', handleResize);
