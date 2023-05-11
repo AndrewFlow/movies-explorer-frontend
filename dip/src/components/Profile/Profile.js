@@ -101,7 +101,7 @@ function Profile({ onLogout, onUpdateUser }) {
                                 type="submit"
                                 className="profile__link"
                             >Сохранить</button>)}
-                            <Link className="profile__exit" onClick={onLogout} to='/signin'>Выйти из аккаунта</Link>
+                            <Link className="profile__exit" onClick={onLogout} to='/'>Выйти из аккаунта</Link>
                         </div>
                     </form>
                 </section>

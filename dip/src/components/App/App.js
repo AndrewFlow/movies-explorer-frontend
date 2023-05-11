@@ -60,13 +60,14 @@ function App() {
 
   function handleLogin() {
     setLogIn(true);
-    window.location.reload();
+    //window.location.reload();
     navigate("/movies")
   }
 
   function handleLogout() {
     setLogIn(false);
     localStorage.removeItem("token");
+
   }
 
   // редактирование профиля
