@@ -17,10 +17,15 @@ function Profile({ onLogout, onUpdateUser }) {
 
     const currentUser = React.useContext(CurrentUserContext);
 
-    const handleDescription = (e) => {
+    const handleEmail = (e) => {
         e.preventDefault();
         setDataMail(e.target.value);
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (e.target.name !== currentUser.name || e.target.email !== currentUser.email) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
         if (!re.test(String(e.target.value).toLowerCase())) {
             setMailError('Email неккоректен')
         } else {
@@ -46,7 +51,6 @@ function Profile({ onLogout, onUpdateUser }) {
 
     }
 
-
     const blurHandler = (e) => {
         switch (e.target.name) {
             case 'email':
@@ -57,6 +61,7 @@ function Profile({ onLogout, onUpdateUser }) {
                 break
         }
     }
+    
     //сохранить
     function handleSubmit(e) {
         e.preventDefault();
@@ -88,7 +93,7 @@ function Profile({ onLogout, onUpdateUser }) {
                             {(nameDirty && nameError) && <span className="profile__error" style={{ color: 'red' }}>{nameError}</span>}
                             <div className="profile__emailcontainer">
                                 <span className="profile__email">E-mail</span>
-                                <input className="profile__nameinner" id="mail-input" onBlur={e => blurHandler(e)} onChange={e => handleDescription(e)} value={email} name="email" type="email" required
+                                <input className="profile__nameinner" id="mail-input" onBlur={e => blurHandler(e)} onChange={e => handleEmail(e)} value={email} name="email" type="email" required
                                     minLength="2" maxLength="40" />
                             </div>
                             {(emailDirty && emailError) && <span className="profile__error" style={{ color: 'red' }}>{emailError}</span>}

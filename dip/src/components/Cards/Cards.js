@@ -4,7 +4,7 @@ import "./Cards.css";
 import Preloader from '../Preloader/Preloader';
 import {shorts,largeCards,mediumCards,smallCards,largeScreen,mediumScreen,smallScreen} from '../utils/constants'
 
-function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard, savedMovie }) {
+function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
     const [value, setValue] = useState('');
     const [checkBox, setCheckBox] = useState(false);
     const [visible, setVisible] = useState(8);
