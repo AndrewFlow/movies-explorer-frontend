@@ -17,9 +17,8 @@ function NotFound() {
                     </h1>
                     <p className="notfound__subtitle">Страница не найдена</p>
                 </div>
-
+                <Link className="notfound__link" onClick={goBack}>Назад</Link>
             </section>
-            <Link className="notfound__link" onClick={goBack}>Назад</Link>
         </main>
     )
 }
