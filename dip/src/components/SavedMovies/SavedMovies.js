@@ -7,6 +7,7 @@ import Footer
 
 function SavedMovies({ SavedCards, cardDelete }) {
 
+
     return (
         <>
             <Header isLoggedIn={true}></Header>

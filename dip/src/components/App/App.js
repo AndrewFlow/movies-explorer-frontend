@@ -26,6 +26,7 @@ function App() {
   const [SavedCards, setSavedCards] = useState([]);
   const location = useLocation();
 
+
   // Достаем фильмы из API
   useEffect(() => {
     setLoad(true);
@@ -45,7 +46,7 @@ function App() {
   //Проверка токена
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && (location.pathname === '/saved-movies' || location.pathname === '/movies')) {
       auth.checkInToken(token)
         .then((res) => {
           if (res) {
@@ -56,18 +57,17 @@ function App() {
         })
         .catch(console.error);
     }
-  }, [LogIn]);
+  }, [location.pathname]);
+
 
   function handleLogin() {
     setLogIn(true);
-    //window.location.reload();
     navigate("/movies")
   }
 
   function handleLogout() {
     setLogIn(false);
     localStorage.removeItem("token");
-
   }
 
   // редактирование профиля
@@ -106,7 +106,7 @@ function App() {
 
   //Достаем сохраненные карточки
   useEffect(() => {
-    if (LogIn) {
+    if (LogIn && (location.pathname === '/saved-movies' || location.pathname === '/movies')) {
       mainApi.saveCards()
         .then((res) => {
           setSavedCards(res.filter((i) => i.owner._id === currentUser._id));
@@ -114,7 +114,10 @@ function App() {
           console.error(err);
         })
     }
-  }, [LogIn])
+  }, [LogIn,location.pathname])
+
+
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
