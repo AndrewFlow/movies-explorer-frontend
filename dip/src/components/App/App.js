@@ -3,7 +3,7 @@ import React from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -16,12 +16,13 @@ import { CurrentUserContext } from '../context/CurrentUserContext';
 import ProtectedRoute from "../ProjectedRoute/ProtectedRoute";
 import auth from '../utils/Auth';
 import Preloader from '../Preloader/Preloader';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 function App() {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
-  const [currentUser, setUser] = useState({});
-  const [LogIn, setLogIn] = useState(false);
+  const [currentUser, setUser] = useLocalStorage({});
+  const [LogIn, setLogIn] = useLocalStorage(false);
   const [load, setLoad] = useState(false);
   const [SavedCards, setSavedCards] = useState([]);
   const location = useLocation();
@@ -33,7 +34,14 @@ function App() {
     moviesApi.getCards()
       .then((cards) => {
         setCards(cards);
-
+        if (location.pathname === '/movies') {
+          mainApi.saveCards()
+            .then((res) => {
+              setSavedCards(res.filter((i) => i?.owner?._id === currentUser?._id));
+            }).catch((err) => {
+              console.error(err);
+            })
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -41,7 +49,7 @@ function App() {
       .finally(() => {
         setLoad(false);
       })
-  }, [])
+  }, [LogIn, location.pathname])
 
   //Проверка токена
   useEffect(() => {
@@ -52,6 +60,13 @@ function App() {
           if (res) {
             setLogIn(true)
             setUser(res)
+            mainApi.saveCards()
+            .then((response) => {
+              console.log(response.filter((i) => i?.owner?._id === res?._id));
+              setSavedCards(response.filter((i) => i?.owner?._id === res?._id));
+            }).catch((err) => {
+              console.error(err);
+            })
             navigate(location)
           }
         })
@@ -68,6 +83,10 @@ function App() {
   function handleLogout() {
     setLogIn(false);
     localStorage.removeItem("token");
+    setUser({});
+    setSavedCards([]);
+    setCards([]);
+    console.log('логаут')
   }
 
   // редактирование профиля
@@ -106,19 +125,20 @@ function App() {
 
   //Достаем сохраненные карточки
   useEffect(() => {
-    if (LogIn && (location.pathname === '/saved-movies' || location.pathname === '/movies')) {
+    if (LogIn && currentUser?._id && (location.pathname === '/saved-movies' || location.pathname === '/movies')) {
       mainApi.saveCards()
         .then((res) => {
-          setSavedCards(res.filter((i) => i.owner._id === currentUser._id));
+          console.log(res.filter((i) => i?.owner?._id === currentUser?._id))
+          console.log(currentUser)
+          setSavedCards(res.filter((i) => i?.owner?._id === currentUser?._id));
         }).catch((err) => {
           console.error(err);
         })
     }
-  }, [LogIn,location.pathname])
+  }, [LogIn, location.pathname,currentUser])
 
 
-
-
+  //console.log(SavedCards)
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='App'>
@@ -158,14 +178,15 @@ function App() {
               </>
             </ProtectedRoute>}>
           </Route>
+
           <Route exact path='/signin' element={
             <>
-              <Login onLogin={handleLogin} />
+              {!LogIn ? <Login onLogin={handleLogin} /> : <Navigate to="/" />}
             </>
           } />
           <Route exact path="/signup" element={
             <>
-              <Register onLogin={handleLogin} />
+              {!LogIn ? <Register onLogin={handleLogin} /> : <Navigate to="/" />}
             </>} />
           <Route path="/*" element={<NotFound />}>
           </Route>
