@@ -103,7 +103,7 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
                                             cardDelete={cardDelete}
                                         />
                                     ))
-                                ) : (chechboxCardsDone.map((item) => (
+                                ) : (chechboxCardsDone.slice(0, visible).map((item) => (
                                     <Card
                                         item={item}
                                         key={item._id || item.id}

@@ -38,8 +38,6 @@ function App() {
           mainApi.saveCards()
             .then((res) => {
               setSavedCards(res.filter((i) => i?.owner?._id === currentUser?._id));
-              console.log(res.filter((i) => i?.owner?._id === currentUser?._id))
-              console.log(currentUser)
             }).catch((err) => {
               console.error(err);
             })
