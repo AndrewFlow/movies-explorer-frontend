@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import "./Cards.css";
 import Preloader from '../Preloader/Preloader';
-import { shorts, largeCards, mediumCards, smallCards, largeScreen, mediumScreen, smallScreen } from '../utils/constants'
+import {shorts,largeCards,mediumCards,smallCards,largeScreen,mediumScreen,smallScreen} from '../utils/constants'
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard }) {
+function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
     const [value, setValue] = useLocalStorage('');
     const [checkBox, setCheckBox] = useLocalStorage(false);
     const [visible, setVisible] = useState(8);
@@ -136,4 +136,3 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard }) {
 }
 
 export default Cards;
-

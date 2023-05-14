@@ -14,17 +14,18 @@ function Profile({ onLogout, onUpdateUser }) {
     const [emailError, setMailError] = React.useState('');
 
     const [disabled, setDisabled] = React.useState('false');
-
+    const [formValid, setFormValid] = React.useState('false');
     const currentUser = React.useContext(CurrentUserContext);
 
+    const isValidButton = (!formValid || (currentUser.name === name && currentUser.email === email));
     const handleEmail = (e) => {
         e.preventDefault();
         setDataMail(e.target.value);
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (e.target.name !== currentUser.name || e.target.email !== currentUser.email) {
-            setDisabled(false)
-        } else {
+        if (e.target.email === currentUser.email) {
             setDisabled(true)
+        } else {
+            setDisabled(false)
         }
         if (!re.test(String(e.target.value).toLowerCase())) {
             setMailError('Email неккоректен')
@@ -35,7 +36,7 @@ function Profile({ onLogout, onUpdateUser }) {
     const handleUserName = (e) => {
         e.preventDefault();
         setDataName(e.target.value);
-        if (e.target.name !== currentUser.name || e.target.email !== currentUser.email) {
+        if (e.target.name !== currentUser.name) {
             setDisabled(false)
         } else {
             setDisabled(true)
@@ -75,8 +76,6 @@ function Profile({ onLogout, onUpdateUser }) {
         setDataMail(currentUser.email);
     }, [currentUser]);
 
-
-
     return (
         <>
             <Header isLoggedIn={true}></Header>
@@ -99,7 +98,7 @@ function Profile({ onLogout, onUpdateUser }) {
                             {(emailDirty && emailError) && <span className="profile__error" style={{ color: 'red' }}>{emailError}</span>}
                         </fieldset>
                         <div className="profile__edit">
-                            {disabled ? (<button
+                            {isValidButton ? (<button
                                 type="submit"
                                 className="profile__link" disabled
                             >Сохранить</button>) : (<button
