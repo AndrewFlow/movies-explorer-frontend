@@ -21,8 +21,8 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 function App() {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
-  const [currentUser, setUser] = useLocalStorage({});
-  const [LogIn, setLogIn] = useLocalStorage(false);
+  const [currentUser, setUser] = useLocalStorage('currentUser',{});
+  const [LogIn, setLogIn] = useLocalStorage('LogIn',false);
   const [load, setLoad] = useState(false);
   const [SavedCards, setSavedCards] = useState([]);
   const location = useLocation();
@@ -34,10 +34,12 @@ function App() {
     moviesApi.getCards()
       .then((cards) => {
         setCards(cards);
-        if (location.pathname === '/movies') {
+        if (location.pathname === '/movies' && currentUser?._id) {
           mainApi.saveCards()
             .then((res) => {
               setSavedCards(res.filter((i) => i?.owner?._id === currentUser?._id));
+              console.log(res.filter((i) => i?.owner?._id === currentUser?._id))
+              console.log(currentUser)
             }).catch((err) => {
               console.error(err);
             })

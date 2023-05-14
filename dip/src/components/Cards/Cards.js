@@ -6,8 +6,8 @@ import {shorts,largeCards,mediumCards,smallCards,largeScreen,mediumScreen,smallS
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
-    const [value, setValue] = useLocalStorage('');
-    const [checkBox, setCheckBox] = useLocalStorage(false);
+    const [value, setValue] = useLocalStorage('value','');
+    const [checkBox2, setCheckBox2] = useLocalStorage('checkBox2',false);
     const [visible, setVisible] = useState(8);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -60,8 +60,6 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
         return () => clearTimeout(timer);
     }, []);
 
-    console.log(checkBox)
-
     return (
         <>
             {isLoading ? (<Preloader />) : (
@@ -79,7 +77,9 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
                             <button className="forms__button blue" type="submit">Найти</button>
                         </div>
                         <label className="forms__checkboxes">
-                            <input onChange={() => setCheckBox(!checkBox)} value={checkBox} checked={checkBox} type="checkbox"></input>
+                            <input onChange={(e) => {
+                                setCheckBox2(!checkBox2)
+                            }} value={checkBox2} checked={checkBox2} type="checkbox"></input>
                             <span className="checkbox-swtich"></span>
                             <span className="movies__type">Короткометражки</span>
                         </label>
@@ -92,7 +92,7 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
                         </div>) : (
                         <section className="elements">
                             <ul className='cards'>
-                                {!checkBox ? (
+                                {!checkBox2 ? (
                                     filtredCards.slice(0, visible).map((item) => (
                                         <Card
                                             item={item}
@@ -115,7 +115,7 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
                                 )))}
 
                             </ul>
-                            {!checkBox ? (
+                            {!checkBox2 ? (
                                 <div className='elements__morebutton'>
                                     {(visible < filtredCards.length) && (
                                         <button className="elements__more" onClick={showMoreItems}>Ещё</button>

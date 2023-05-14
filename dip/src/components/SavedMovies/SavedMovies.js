@@ -10,8 +10,8 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
 
-    const [value, setValue] = useLocalStorage('');
-    const [checkBox, setCheckBox] = useLocalStorage(false);
+    const [value, setValue] = useLocalStorage('value','');
+    const [checkBox1, setCheckBox1] = useLocalStorage('checkBox1',false);
     const [isLoading, setIsLoading] = useState(true);
 
     const chechboxCards = [...SavedCards].filter((v) => v.duration < shorts);
@@ -43,7 +43,7 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
                     <form className="forms">
                         <div className="forms__container">
                             <input
-                                onChange={(e) => setValue(e.target.value)}
+                                onChange={(e) => setValue(checkBox1)}
                                 className="forms__input"
                                 type="text"
                                 placeholder="Фильм"
@@ -53,7 +53,7 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
                             <button className="forms__button blue" type="submit">Найти</button>
                         </div>
                         <label className="forms__checkboxes">
-                            <input onChange={() => setCheckBox(!checkBox)} value={checkBox} checked={checkBox} type="checkbox"></input>
+                            <input onChange={() => setCheckBox1(!checkBox1)} value={checkBox1} checked={checkBox1} type="checkbox"></input>
                             <span className="checkbox-swtich"></span>
                             <span className="movies__type">Короткометражки</span>
                         </label>
@@ -66,7 +66,7 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
                         </div>) : (
                         <section className="elements">
                             <ul className='cards'>
-                                {!checkBox ? (
+                                {!checkBox1 ? (
                                     filtredCards.map((item) => (
                                         <Card
                                             item={item}
