@@ -62,7 +62,6 @@ function App() {
             setUser(res)
             mainApi.saveCards()
             .then((response) => {
-              console.log(response.filter((i) => i?.owner?._id === res?._id));
               setSavedCards(response.filter((i) => i?.owner?._id === res?._id));
             }).catch((err) => {
               console.error(err);
@@ -86,7 +85,6 @@ function App() {
     setUser({});
     setSavedCards([]);
     setCards([]);
-    console.log('логаут')
   }
 
   // редактирование профиля
@@ -128,8 +126,6 @@ function App() {
     if (LogIn && currentUser?._id && (location.pathname === '/saved-movies' || location.pathname === '/movies')) {
       mainApi.saveCards()
         .then((res) => {
-          console.log(res.filter((i) => i?.owner?._id === currentUser?._id))
-          console.log(currentUser)
           setSavedCards(res.filter((i) => i?.owner?._id === currentUser?._id));
         }).catch((err) => {
           console.error(err);
@@ -138,7 +134,6 @@ function App() {
   }, [LogIn, location.pathname,currentUser])
 
 
-  //console.log(SavedCards)
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='App'>

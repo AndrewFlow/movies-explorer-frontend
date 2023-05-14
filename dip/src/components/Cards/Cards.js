@@ -60,6 +60,7 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
         return () => clearTimeout(timer);
     }, []);
 
+    console.log(checkBox)
 
     return (
         <>
