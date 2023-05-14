@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import "./Cards.css";
 import Preloader from '../Preloader/Preloader';
-import {shorts,largeCards,mediumCards,smallCards,largeScreen,mediumScreen,smallScreen} from '../utils/constants'
+import { shorts, largeCards, mediumCards, smallCards, largeScreen, mediumScreen, smallScreen } from '../utils/constants'
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
-    const [value, setValue] = useState('');
-    const [checkBox, setCheckBox] = useState(false);
+function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard }) {
+    const [value, setValue] = useLocalStorage('');
+    const [checkBox, setCheckBox] = useLocalStorage(false);
     const [visible, setVisible] = useState(8);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -26,11 +27,11 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
 
     const chechboxCards = [...cards].filter((v) => v.duration < shorts);
     const chechboxCardsDone = chechboxCards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(value?.toLowerCase())
 
     })
     const filtredCards = cards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(value?.toLowerCase())
 
     })
 
@@ -71,12 +72,13 @@ function Cards({ cards, SavedCards, cardSave, cardDelete, handeCard}) {
                                 className="forms__input"
                                 type="text"
                                 placeholder="Фильм"
+                                value={value}
                                 required>
                             </input>
                             <button className="forms__button blue" type="submit">Найти</button>
                         </div>
                         <label className="forms__checkboxes">
-                            <input onChange={() => setCheckBox(!checkBox)} type="checkbox"></input>
+                            <input onChange={() => setCheckBox(!checkBox)} value={checkBox} checked={checkBox} type="checkbox"></input>
                             <span className="checkbox-swtich"></span>
                             <span className="movies__type">Короткометражки</span>
                         </label>
