@@ -11,32 +11,32 @@ function Login({ onLogin }) {
 
     const [password, setPassword] = React.useState('');
     const [passwordDirty, setPasswordDirty] = React.useState('false');
-    const [passwordError, setNameError] = React.useState('Поле пароль не может быть пустым');
+    const [passwordError, setPasswordError] = React.useState('Поле пароль не может быть пустым');
 
-    const [email, setMail] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [emailDirty, setEmailDirty] = React.useState('false');
-    const [emailError, setMailError] = React.useState('Поле email не может быть пустым');
+    const [emailError, setEmailError] = React.useState('Поле email не может быть пустым');
 
     const [formValid, setFormValid] = React.useState('false');
 
     const handlePassword = (e) => {
-        setMail(e.target.value);
-        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (!re.test(String(e.target.value).toLowerCase())) {
-            setMailError('Email неккоректен')
+        setEmail(e.target.value);
+        const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (!emailRegex.test(String(e.target.value).toLowerCase())) {
+            setEmailError('Email неккоректен')
         } else {
-            setMailError('')
+            setEmailError('')
         }
     }
     const handleUserName = (e) => {
         setPassword(e.target.value);
         if (e.target.value.length < 7 || e.target.value.length > 40) {
-            setNameError('Поле должно содержать не меньше 7 и не больше 40 символов')
+            setPasswordError('Поле должно содержать не меньше 7 и не больше 40 символов')
             if (!e.target.value) {
-                setNameError('Поле не может быть пустым')
+                setPasswordError('Поле не может быть пустым')
             }
         } else {
-            setNameError('')
+            setPasswordError('')
         }
     }
     const inputsHandler = (e) => {
@@ -60,7 +60,7 @@ function Login({ onLogin }) {
             .catch(() => {
                 alert("Неккоректно заполнено одно из полей. Попробуйте еще раз.");
                 setPassword('')
-                setMail('')
+                setEmail('')
             })
 
     }
