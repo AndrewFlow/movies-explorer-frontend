@@ -10,17 +10,17 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
 
-    const [value, setValue] = useLocalStorage('value','');
+    const [savedCardsValue, setSavedCardsValue] = useLocalStorage('savedCardsValue','');
     const [checkBox1, setCheckBox1] = useLocalStorage('checkBox1',false);
     const [isLoading, setIsLoading] = useState(true);
 
     const chechboxCards = [...SavedCards].filter((v) => v.duration < shorts);
     const chechboxCardsDone = chechboxCards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(savedCardsValue.toLowerCase())
 
     })
     const filtredCards = SavedCards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(savedCardsValue.toLowerCase())
 
     })
 
@@ -43,11 +43,11 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
                     <form className="forms">
                         <div className="forms__container">
                             <input
-                                onChange={(e) => setValue(e.target.value)}
+                                onChange={(e) => setSavedCardsValue(e.target.value)}
                                 className="forms__input"
                                 type="text"
                                 placeholder="Фильм"
-                                value={value}
+                                value={savedCardsValue}
                                 required>
                             </input>
                             <button className="forms__button blue" type="submit">Найти</button>
