@@ -82,6 +82,7 @@ function App() {
   function handleLogout() {
     setLogIn(false);
     localStorage.removeItem("token");
+    localStorage.clear();
     setUser({});
     setSavedCards([]);
     setCards([]);
