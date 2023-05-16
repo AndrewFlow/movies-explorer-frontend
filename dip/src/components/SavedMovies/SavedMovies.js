@@ -16,11 +16,11 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
 
     const chechboxCards = [...SavedCards].filter((v) => v.duration < shorts);
     const chechboxCardsDone = chechboxCards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value?.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
 
     })
     const filtredCards = SavedCards.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(value?.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(value.toLowerCase())
 
     })
 
@@ -43,7 +43,7 @@ function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
                     <form className="forms">
                         <div className="forms__container">
                             <input
-                                onChange={(e) => setValue(checkBox1)}
+                                onChange={(e) => setValue(e.target.value)}
                                 className="forms__input"
                                 type="text"
                                 placeholder="Фильм"
