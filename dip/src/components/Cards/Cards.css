@@ -13,6 +13,7 @@
     justify-content: center;
     grid-auto-flow: row;
     grid-auto-columns: 270px;
+    background: #202020;
 
 }
 
@@ -20,6 +21,18 @@
     width: 270px;
     height: 230px;
 }
+
+.elements__none {
+    display: block;
+    margin: 80px 0px;
+
+}
+.elements__none {
+    text-align: center;
+    color: #FAFAFA;
+    font-size: 40px;
+}
+
 .cards__info {
     border-bottom: 1px solid #424242;
     padding: 0px 0px 25px;
@@ -56,8 +69,36 @@
 
 
 .cards__button_active {
+    width: 30px;
+    height: 30px;
     background-image: url('../../images/saveactive.svg');
     transition: all 0.1s ease-in-out;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    background-position: 50% 50%;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    margin: 0;
+    box-sizing: border-box;
+}
+.cards__button_delete {
+    width: 30px;
+    height: 30px;
+    background-image: url('../../images/delete.svg');
+    transition: all 0.1s ease-in-out;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    background-position: 50% 50%;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .cards__info {
@@ -75,7 +116,7 @@
     line-height: 16px;
     margin: 0;
     padding: 0;
-    color:#FAFAFA;
+    color: #FAFAFA;
 }
 
 .cards__time {
@@ -88,7 +129,7 @@
 }
 
 .elements__morebutton {
-    margin: 80px 0px;
+    padding: 80px 0px;
     max-width: 1140px;
     width: 100%;
     display: flex;
@@ -115,6 +156,7 @@
     cursor: pointer;
     opacity: 1;
 }
+
 .elements__more:hover {
     background: #595959;
 }
@@ -134,15 +176,17 @@
         grid-auto-columns: 339px;
 
     }
+
     .cards__item {
         width: 339px;
         height: 269px;
     }
+
     .cards__image {
         width: 339px;
         height: 190px;
     }
-    
+
 }
 
 @media screen and (max-width: 767px) {
@@ -155,18 +199,24 @@
         margin: 50px 0 0 0;
 
     }
+
     .cards__item {
         width: 300px;
         height: 246px;
     }
+
     .cards__image {
         width: 300px;
         height: 168px;
     }
+
     .elements__more {
         margin: 0px 40px;
         max-width: 320px;
         width: 100%;
         height: 36px;
+    }
+    .elements__none {
+        font-size: 20px;
     }
 }

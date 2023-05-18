@@ -1,36 +1,99 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import Header from "../Header/Header";
-import Cards from "../Cards/Cards";
+import Card from '../Card/Card';
 import Footer
     from "../Footer/Footer";
-function SavedMovies({cards}) {
+    import Preloader from '../Preloader/Preloader';
+import {shorts} from '../utils/constants'
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
+
+function SavedMovies({ SavedCards, cardSave, cardDelete, handeCard }) {
+
+    const [savedCardsValue, setSavedCardsValue] = useLocalStorage('savedCardsValue','');
+    const [checkBox1, setCheckBox1] = useLocalStorage('checkBox1',false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const chechboxCards = [...SavedCards].filter((v) => v.duration < shorts);
+    const chechboxCardsDone = chechboxCards.filter(movie => {
+        return movie.nameRU.toLowerCase().includes(savedCardsValue.toLowerCase())
+
+    })
+    const filtredCards = SavedCards.filter(movie => {
+        return movie.nameRU.toLowerCase().includes(savedCardsValue.toLowerCase())
+
+    })
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+
+
     return (
         <>
             <Header isLoggedIn={true}></Header>
-            <main>
-                <section className="saved">
-                    <section className="movies">
-                        <form className="forms">
-                            <div className="forms__container">
-                                <input
-                                    name="query"
-                                    className="forms__input"
-                                    type="text"
-                                    placeholder="Фильм"
-                                    required>
+            <main className='saved-movies'>
+            <>
+            {isLoading ? (<Preloader />) : (
+                <>
+                    <form className="forms">
+                        <div className="forms__container">
+                            <input
+                                onChange={(e) => setSavedCardsValue(e.target.value)}
+                                className="forms__input"
+                                type="text"
+                                placeholder="Фильм"
+                                value={savedCardsValue}
+                                required>
+                            </input>
+                            <button className="forms__button blue" type="submit">Найти</button>
+                        </div>
+                        <label className="forms__checkboxes">
+                            <input onChange={() => setCheckBox1(!checkBox1)} value={checkBox1} checked={checkBox1} type="checkbox"></input>
+                            <span className="checkbox-swtich"></span>
+                            <span className="movies__type">Короткометражки</span>
+                        </label>
+                    </form>
+                    {filtredCards.length === 0 ? (
+                        <div className="elements_inner">
+                            <span className="elements__none">
+                                Нет совпадений
+                            </span>
+                        </div>) : (
+                        <section className="elements">
+                            <ul className='cards'>
+                                {!checkBox1 ? (
+                                    filtredCards.map((item) => (
+                                        <Card
+                                            item={item}
+                                            key={item._id || item.id}
+                                            SavedCards={SavedCards}
+                                            handeCard={handeCard}
+                                            cardSave={cardSave}
+                                            cardDelete={cardDelete}
+                                        />
+                                    ))
+                                ) : (chechboxCardsDone.map((item) => (
+                                    <Card
+                                        item={item}
+                                        key={item._id || item.id}
+                                        handeCard={handeCard}
+                                        SavedCards={SavedCards}
+                                        cardSave={cardSave}
+                                        cardDelete={cardDelete}
+                                    />
+                                )))}
 
-                                </input>
-                                <button className="forms__button blue" type="submit">Найти</button>
-                            </div>
-                            <label className="forms__checkboxes">
-                                <input type="checkbox"></input>
-                                <span className="checkbox-swtich"></span>
-                                <span className="movies__type">Короткометражки</span>
-                            </label>
-                        </form>
-                    </section>
-                    <Cards cards={cards}></Cards>
-                </section>
+                            </ul>
+                        </section>)
+                    }
+                </>
+            )}
+        </>
             </main>
             <Footer></Footer>
         </>

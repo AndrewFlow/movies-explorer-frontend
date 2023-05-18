@@ -1,12 +1,20 @@
-#root {
+body {
   background: #202020;
+}
+#root {
   width: 100%;
   height: 100%;
+  overflow: visible;
+}
+main {
+  background: #202020;
+  width: 100%
 }
 
 .App {
   margin: 0 auto;
   max-width: 1280px;
+  height: 100vh;
   background: #202020;
   font-family: 'Inter', sans-serif;
 }
@@ -14,7 +22,13 @@
 .hidden {
   display: none;
 }
-
+button:disabled {
+  background-color: #A0A0A0;
+}
+button:disabled:hover {
+  background-color: #A0A0A0;
+  cursor: not-allowed;
+}
 .blue {
   color: white;
   background: #4285F4;
@@ -26,18 +40,13 @@
   cursor: pointer;
 }
 
-.visible {
-  display: block;
-  color: #EE3465;
-}
-
-
 
 .error {
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
   padding-top: 10px;
+  color: #EE3465;
 }
 
 .link {
